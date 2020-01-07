@@ -1,4 +1,5 @@
 import { GraphQLServer } from "graphql-yoga";
+import connection from "./ormConfig";
 
 //인자값과 리턴되는 값의 타입을 지정
 const typeDefs = `
@@ -16,6 +17,8 @@ const resolvers = {
 
 const server = new GraphQLServer({ typeDefs, resolvers });
 
-server.start(() =>
-  console.log("My first GraphQL Server is running on localhost:4000")
+connection.then(() =>
+  server.start(() =>
+    console.log("My first GraphQL Server is running on localhost:4000")
+  )
 );
