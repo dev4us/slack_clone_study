@@ -16,6 +16,15 @@ type Query {
   GetMessages(innerChannelId: Int!): GetMessagesResponse!
 }
 
+type SendMessageResponse {
+  ok: Boolean!
+  error: String
+}
+
+type Mutation {
+  SendMessage(nickname: String!, contents: String!, thumbnail: String!, innerChannelId: Int!): SendMessageResponse!
+}
+
 type Message {
   id: Int!
   nickname: String!
