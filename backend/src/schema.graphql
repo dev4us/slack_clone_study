@@ -1,3 +1,13 @@
+type CreateChannelResponse {
+  ok: Boolean!
+  error: String
+}
+
+type Mutation {
+  CreateChannel(channelName: String!): CreateChannelResponse!
+  SendMessage(nickname: String!, contents: String!, thumbnail: String!, innerChannelId: Int!): SendMessageResponse!
+}
+
 type Channel {
   id: Int!
   channelName: String!
@@ -21,13 +31,10 @@ type SendMessageResponse {
   error: String
 }
 
-type Mutation {
-  SendMessage(nickname: String!, contents: String!, thumbnail: String!, innerChannelId: Int!): SendMessageResponse!
-}
-
 type Message {
   id: Int!
   nickname: String!
+  thumbnail: String!
   contents: String!
   innerChannel: Channel!
   innerChannelId: Int!
