@@ -10,7 +10,8 @@ const resolvers: Resolvers = {
   Mutation: {
     SendMessage: async (
       _,
-      args: SendMessageMutationArgs
+      args: SendMessageMutationArgs,
+      { pubSub }
     ): Promise<SendMessageResponse> => {
       try {
         const { nickname, contents, thumbnail, innerChannelId } = args;
@@ -24,12 +25,16 @@ const resolvers: Resolvers = {
           };
         }
 
-        await Message.create({
+        const newMessage = await Message.create({
           nickname,
           thumbnail,
           contents,
           innerChannelId
         }).save();
+
+        pubSub.publish("newMessage", {
+          sendMessageSubscription: newMessage
+        });
 
         return {
           ok: true,
