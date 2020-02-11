@@ -9,6 +9,11 @@ type Mutation {
   SendMessage(nickname: String!, contents: String!, thumbnail: String!, innerChannelId: Int!): SendMessageResponse!
 }
 
+type Subscription {
+  CreateChannelSubscription: Channel
+  SendMessageSubscription: Message
+}
+
 type GetChannelsResponse {
   ok: Boolean!
   error: String
