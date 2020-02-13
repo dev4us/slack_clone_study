@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 //import App from "./App";
-import Counter from "./Counter";
+import Counter2 from "./Counter2";
 
-ReactDOM.render(<Counter />, document.getElementById("root"));
+ReactDOM.render(<Counter2 />, document.getElementById("root"));
